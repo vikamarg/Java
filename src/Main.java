@@ -204,7 +204,7 @@ public class Main {
              int asciiCode = password.charAt(i)   ;
              if( ( asciiCode >= 65 && asciiCode<= 90 ) || (asciiCode >= 97 && asciiCode<= 122) )
                  characterCount++;
-             else if (asciiCode>=47 && asciiCode<=57 )
+             else if (asciiCode>=48 && asciiCode<=57 )
                  digitsCount++ ;
              else
                  return false ;
