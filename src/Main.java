@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner( System.in );
+
         System.out.print("input number1: ");
         int input1 = scanner.nextInt() ;
 
@@ -15,53 +16,68 @@ public class Main {
         int input3 = scanner.nextInt() ;
 
         System.out.println("Smallest number is: " + SmallestNumber(input1, input2, input3) );
-
         System.out.println("Avarage Number is: " + AvarageNumber(input1, input2, input3) );
+        System.out.println("\n");
 
-        System.out.print("input a String: ");
+        System.out.print("input a String to find vowels and middle char: ");
         String inputString = scanner.next();
 
         System.out.println("Middle Char is: " +  MiddleChar(inputString) );
 
         System.out.println("Find Vowels: " +  FindVowels(inputString)  );
+        System.out.println("\n");
 
         Scanner sc = new Scanner( System.in );
         System.out.print("input a sentance: ");
         String inputLine = sc.nextLine();
         System.out.println("Count of words in sentance:  " +  CountOfWords(inputLine)  );
+        System.out.println("\n");
 
 
-        System.out.print( "input long number: ");
+        System.out.print( "input  number to count sum of digits: ");
         int input4 = scanner.nextInt() ;
         System.out.println( "Sum of digits: " + SumOfDigits( input4 ) );
+        System.out.println("\n");
 
-        System.out.print( "input pentagonal size:  " ) ;
+        System.out.print( "input size of pentagonal series:  " ) ;
         int input5 = scanner.nextInt();
         double[] pent = getPentagonalNumbers(input5 ) ;
         printArray( "First "+ input5 +" pentagonal numbers: " , pent);
+        System.out.println("\n");
 
-        System.out.println("Future investment");
+        System.out.println("Count Future investment");
         getInterestRate(1000, 10, 5 );
+        System.out.println("\n");
 
-        System.out.print("insert year: ");
+        System.out.print("insert year to find out is it leap year or not: ");
         int year = scanner.nextInt();
         System.out.println("Is year leap: " + isLeapYear(year));
+        System.out.println("\n");
 
         System.out.println( "1. A password must have at least eight characters.") ;
         System.out.println( "2. A password consists of only letters and digits.") ;
         System.out.println( "3. A password must contain at least two digits") ;
 
-        System.out.print( "Input a password or X to exit: ");
-        String password =null ;
-        while(true)
-        {
-            password = sc.nextLine();
-            if(password == "X")
-                break ;
-            System.out.println(validatePassword(password));
-        }
+        System.out.print( "Input a password to validate: ");
+        String password =sc.nextLine(); ;
+        System.out.println(validatePassword(password));
+        System.out.println("\n");
 
+        /*Triangle Area*/
+        System.out.println( "Count triangle Area."  );
+        System.out.println( "sum of 2 sides must be greater then the 3-rd side."  );
+        System.out.print( "Insert triangle side1:"  );
+        double triangleSide1 = scanner.nextDouble();
+        System.out.print( "Insert triangle side2:"  );
+        double triangleSide2 = scanner.nextDouble();
+        System.out.print( "Insert triangle side1:"  );
+        double triangleSide3 = scanner.nextDouble();
+        System.out.print( "Area of triangle:" + triangleArea(triangleSide1, triangleSide2, triangleSide3) );
+        System.out.println("\n");
 
+        System.out.println("Input number to find the amount of digits '2': ");
+        System.out.println(countOfNumberTwo( scanner.nextInt()));
+        System.out.println("\n");
 
     }
 
@@ -212,4 +228,23 @@ public class Main {
         System.out.println("\n");
     } ;
 
+    public static double triangleArea( double a, double b , double c)
+    {
+        if(a+b < c || b+c<a || a+c< b)
+            return 0 ;
+        /*Based on Heron formula*/
+        return Math.sqrt( (a+b+c)*(-a+b+c)*(a-b+c)*(a+b-c) ) /4  ;
+    }
+
+    public static int countOfNumberTwo(int number)
+    {
+        String str = String.valueOf(number);
+        int cnt=0;
+        for(int i=0; i<str.length(); i++)
+        {
+            if(str.charAt(i) == '2')
+                cnt++;
+        }
+        return cnt;
+    }
 }
