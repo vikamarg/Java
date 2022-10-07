@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner( System.in );
         System.out.print("input number1: ");
         int input1 = scanner.nextInt() ;
@@ -38,6 +39,30 @@ public class Main {
         int input5 = scanner.nextInt();
         double[] pent = getPentagonalNumbers(input5 ) ;
         printArray( "First "+ input5 +" pentagonal numbers: " , pent);
+
+        System.out.println("Future investment");
+        getInterestRate(1000, 10, 5 );
+
+        System.out.print("insert year: ");
+        int year = scanner.nextInt();
+        System.out.println("Is year leap: " + isLeapYear(year));
+
+        System.out.println( "1. A password must have at least eight characters.") ;
+        System.out.println( "2. A password consists of only letters and digits.") ;
+        System.out.println( "3. A password must contain at least two digits") ;
+
+        System.out.print( "Input a password or X to exit: ");
+        String password =null ;
+        while(true)
+        {
+            password = sc.nextLine();
+            if(password == "X")
+                break ;
+            System.out.println(validatePassword(password));
+        }
+
+
+
     }
 
     public static int SmallestNumber( int a, int b, int c  )
@@ -128,6 +153,55 @@ public class Main {
         return pentagonals;
     }
 
+    public static void getInterestRate( int investment, double annualRate, int years)
+    {
+        double monthRate = annualRate/12;
+        double futureValue = investment ;
+        for(int i=1; i<=years; i++)
+        {
+            for (int j=0; j<12; j++)
+            {
+                futureValue= futureValue+ (futureValue *monthRate/100);
+            }
+            System.out.println( i + "year futur investment: " + futureValue);
+        }
+    }
+
+    public static boolean isLeapYear(int year)
+    {
+        if(year%4==0)
+            return true;
+        return false;
+    }
+
+    public static boolean validatePassword( String password)
+    {
+
+        if(password.length() < 10)
+            return false;
+
+        int characterCount = 0;
+        int digitsCount = 0;
+
+        for(int i=0; i<password.length(); i++ )
+        {
+             int asciiCode = password.charAt(i)   ;
+             if( ( asciiCode >= 65 && asciiCode<= 90 ) || (asciiCode >= 97 && asciiCode<= 122) )
+                 characterCount++;
+             else if (asciiCode>=47 && asciiCode<=57 )
+                 digitsCount++ ;
+             else
+                 return false ;
+        }
+
+        if(characterCount>= 8 && digitsCount>=2)
+            return true;
+
+        return false;
+
+    }
+
+
     public static void printArray( String  text, double[] ar )
     {
         System.out.print(text + " ");
@@ -138,22 +212,4 @@ public class Main {
         System.out.println("\n");
     } ;
 
-    public static void fillArrayWithRandoms( int[] ar )
-    {
-        Random random = new Random();
-
-        for(int i=0; i<ar.length ; i++ )
-        {
-            ar[i] = random.nextInt(100 );
-        }
-    } ;
-
-    public static  int[] appendArray( int ar[] , int multiple )
-    {
-        int[] arrayToAppended = new int[ ar.length * multiple] ;
-        for( int i=0; i< ar.length; i++ )
-            arrayToAppended[i] = ar[i] ;
-
-        return  arrayToAppended ;
-    }
 }
